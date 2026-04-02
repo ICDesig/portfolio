@@ -1,4 +1,4 @@
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
