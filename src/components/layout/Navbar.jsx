@@ -22,12 +22,21 @@ const Navbar = () => {
     { name: 'Contact', href: '#contact' },
   ]
 
+  const handleClick = (e, href) => {
+    e.preventDefault()
+    const element = document.querySelector(href)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+      setIsOpen(false)
+    }
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? 'bg-dark-bg/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
+        scrolled ? 'bg-black/95 backdrop-blur-lg shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -35,11 +44,13 @@ const Navbar = () => {
           {/* Logo */}
           <motion.a
             href="#home"
-            className="text-2xl font-display font-bold tracking-tight"
+            onClick={(e) => handleClick(e, '#home')}
+            className="text-2xl font-bold tracking-tight"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
             whileHover={{ scale: 1.05 }}
           >
-            <span className="text-accent-blue">Creative</span>
-            <span className="text-white">Studio</span>
+            <span className="text-blue-500">Smart</span>
+            <span className="text-white ml-2">Design</span>
           </motion.a>
 
           {/* Desktop Menu */}
@@ -48,6 +59,7 @@ const Navbar = () => {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => handleClick(e, item.href)}
                 className="text-gray-300 hover:text-white transition-colors duration-200 text-sm font-medium uppercase tracking-wider"
               >
                 {item.name}
@@ -72,14 +84,14 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-dark-card"
+            className="md:hidden bg-zinc-900"
           >
             <div className="px-6 py-8 space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleClick(e, item.href)}
                   className="block text-gray-300 hover:text-white transition-colors text-lg font-medium"
                 >
                   {item.name}
