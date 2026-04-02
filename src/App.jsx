@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
@@ -41,14 +41,21 @@ function App() {
 
             <AnimatePresence mode="wait">
               <Routes>
+                {/* Route principale */}
                 <Route path="/" element={<Home />} />
+                
+                {/* Route détails projet */}
                 <Route path="/project/:id" element={<ProjectDetail />} />
+
+                {/* CORRECTION : Capture toutes les autres routes (ex: /portfolio, /about)
+                  et les redirige vers l'accueil pour éviter les erreurs de console.
+                */}
+                <Route path="*" element={<Home />} />
               </Routes>
             </AnimatePresence>
 
             <Footer />
 
-            {/* Theme Toggle */}
             <ThemeToggle />
           </div>
         )}

@@ -58,7 +58,7 @@ const Hero = () => {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/videos/Presentation en video du test.mp4" type="video/mp4" />
+          <source src="videos/Presentation-en-video-du-test.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/70" />
       </motion.div>
